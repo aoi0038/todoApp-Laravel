@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiTodoController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/todos', [ApiTodoController::class, 'getAll']);
-Route::post('/todos', [ApiTodoController::class, 'create']);
-Route::put('/todos/{id}', [ApiTodoController::class, 'updateById']);
-Route::delete('/todos/{id}', [ApiTodoController::class, 'deleteById']);
-Route::get('/todos/{id}', [ApiTodoController::class, 'getAll']);
+Route::get('/todos', [ApiTodoController::class, 'getAll'])->middleware('auth:sanctum');
+Route::post('/todos', [ApiTodoController::class, 'create'])->middleware('auth:sanctum');
+Route::put('/todos/{id}', [ApiTodoController::class, 'updateById'])->middleware('auth:sanctum');
+Route::delete('/todos/{id}', [ApiTodoController::class, 'deleteById'])->middleware('auth:sanctum');
+Route::get('/todos/{id}', [ApiTodoController::class, 'getById'])->middleware('auth:sanctum');
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
