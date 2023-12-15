@@ -108,4 +108,24 @@ class ApiTodoController extends Controller
         ], 200);
 
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $todo = Todo::find($id);
+        if (is_null($todo)) {
+          return response()->json([
+              'message' => 'todoが見つかりません'
+          ], 404);
+        }
+        $authUserId = Auth::id();
+        $userId = $todo['user_id'];
+        if ($authUserId !== $userId) {
+          return response()->json([
+              'message' => '認証に失敗しました'
+          ], 401);
+        }
+        $todo->update($request->all());
+        return response()->json($request->all());
+
+    }
 }
