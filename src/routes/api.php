@@ -25,6 +25,7 @@ Route::post('/todos', [ApiTodoController::class, 'create'])->middleware('auth:sa
 Route::put('/todos/{id}', [ApiTodoController::class, 'updateById'])->middleware('auth:sanctum');
 Route::delete('/todos/{id}', [ApiTodoController::class, 'deleteById'])->middleware('auth:sanctum');
 Route::get('/todos/{id}', [ApiTodoController::class, 'getById'])->middleware('auth:sanctum');
+Route::put('/todos/{id}/status', [ApiTodoController::class, 'updateStatus'])->middleware('auth:sanctum');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
