@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiTodoController;
+use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -26,6 +27,12 @@ Route::put('/todos/{id}', [ApiTodoController::class, 'updateById'])->middleware(
 Route::delete('/todos/{id}', [ApiTodoController::class, 'deleteById'])->middleware('auth:sanctum');
 Route::get('/todos/{id}', [ApiTodoController::class, 'getById'])->middleware('auth:sanctum');
 Route::put('/todos/{id}/status', [ApiTodoController::class, 'updateStatus'])->middleware('auth:sanctum');
+
+Route::get('/categories', [ApiCategoryController::class, 'getAll'])->middleware('auth:sanctum');
+Route::post('/categories', [ApiCategoryController::class, 'create'])->middleware('auth:sanctum');
+Route::put('/categories/{id}', [ApiCategoryController::class, 'updateById'])->middleware('auth:sanctum');
+Route::delete('/categories/{id}', [ApiCategoryController::class, 'deleteById'])->middleware('auth:sanctum');
+Route::get('/categories/{id}', [ApiCategoryController::class, 'getById'])->middleware('auth:sanctum');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
