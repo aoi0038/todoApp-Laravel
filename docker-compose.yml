@@ -10,7 +10,7 @@ services:
       - ./src:/app
 
   db:
-    container_name: mysql_container
+    container_name: mysql_container 
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -29,6 +29,8 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOSTS=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
     ports:
       - 3000:80
     volumes:

@@ -27,26 +27,28 @@ class ApiTodoController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function create(TodoRequest $request)
     {
         $userId = Auth::id();
         $todoInput = $request->all();
         $name = $todoInput['name'];
         $description = $todoInput['description'];
         $category_id = $todoInput['category_id'];
+        $status = $todoInput['status_id'];
 
         Todo::create([
           'name' => $name,
           'description' => $description,
           'user_id' => $userId,
           'category_id' => $category_id,
+          'status_id' => $status
         ]);
 
         return response()->json($todoInput);
 
     }
 
-    public function updateById(Request $request, $id)
+    public function updateById(TodoRequest $request, $id)
     {
         $todo = Todo::find($id);
 
@@ -87,7 +89,7 @@ class ApiTodoController extends Controller
         return response()->json($todo);
 
     }
-    public function getById(Request $request, $id)
+    public function getById($id)
     {
         $todo = Todo::find($id);
         if (!$todo) {
@@ -109,7 +111,7 @@ class ApiTodoController extends Controller
 
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(TodoRequest $request, $id)
     {
         $todo = Todo::find($id);
         if (is_null($todo)) {

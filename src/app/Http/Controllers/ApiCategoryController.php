@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ApiCategoryController extends Controller
@@ -23,7 +24,7 @@ class ApiCategoryController extends Controller
       ], 200);
   }
 
-  public function create(Request $request)
+  public function create(CategoryRequest $request)
   {
       $categoryInput = $request->all();
       $name = $categoryInput['name'];
@@ -35,7 +36,7 @@ class ApiCategoryController extends Controller
       return response()->json($categoryInput);
   }
 
-  public function updateById(Request $request, $id)
+  public function updateById(CategoryRequest $request, $id)
   {
       $category = Category::find($id);
 
@@ -60,7 +61,7 @@ class ApiCategoryController extends Controller
       $category->delete();
       return response()->json($category);
   }
-  public function getById(Request $request, $id)
+  public function getById($id)
   {
       $category = Category::find($id);
       if (!$category) {
