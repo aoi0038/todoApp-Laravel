@@ -263,4 +263,15 @@ class AuthControllerTest extends TestCase
       $response->assertStatus(400);
     }
 
+    /**
+     * 認証ずみのUserが/api/meにgetでアクセスすると
+     * ステータスコード200を返却すること
+     */
+    public function testGetAuthUser()
+    {
+      $user = User::factory()->make();
+      $this->actingAs($user);
+      $response = $this->get('/api/me');
+      $response->assertStatus(200);
+    }
 }

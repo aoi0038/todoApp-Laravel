@@ -11,9 +11,10 @@ class ApiCategoryController extends Controller
 {
   public function getAll()
   {
-      $categories = Category::all();
+      $userId = Auth::id();
+      $categories = Category::where('user_id', $userId)->get();
 
-      if (!$categories) {
+      if ($categories->isEmpty()) {
         return response()->json([
             'message' => 'categoryが見つかりません'
         ], 404);
@@ -28,9 +29,11 @@ class ApiCategoryController extends Controller
   {
       $categoryInput = $request->all();
       $name = $categoryInput['name'];
+      $userId = $categoryInput['user_id'];
 
       Category::create([
         'name' => $name,
+        'user_id' => $userId,
       ]);
 
       return response()->json($categoryInput);
@@ -58,9 +61,19 @@ class ApiCategoryController extends Controller
             'message' => 'categoryが見つかりません'
         ], 404);
       }
+
+      $authUserId = Auth::id();
+      $userId = $category['user_id'];
+      if ($authUserId !== $userId) {
+        return response()->json([
+            'message' => '認証に失敗しました'
+        ], 401);
+      }
+
       $category->delete();
       return response()->json($category);
   }
+
   public function getById($id)
   {
       $category = Category::find($id);
@@ -68,6 +81,14 @@ class ApiCategoryController extends Controller
         return response()->json([
             'message' => 'categoryが見つかりません'
         ], 404);
+      }
+
+      $authUserId = Auth::id();
+      $userId = $category['user_id'];
+      if ($authUserId !== $userId) {
+        return response()->json([
+            'message' => '認証に失敗しました'
+        ], 401);
       }
 
       return response()->json([

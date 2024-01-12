@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Http\Requests\TodoRequest;
+use App\Http\Requests\TodoStatusRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,6 +90,7 @@ class ApiTodoController extends Controller
         return response()->json($todo);
 
     }
+    
     public function getById($id)
     {
         $todo = Todo::find($id);
@@ -111,7 +113,7 @@ class ApiTodoController extends Controller
 
     }
 
-    public function updateStatus(TodoRequest $request, $id)
+    public function updateStatus(TodoStatusRequest $request, $id)
     {
         $todo = Todo::find($id);
         if (is_null($todo)) {
