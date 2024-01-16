@@ -128,12 +128,13 @@ class ApiCategoryControllerTest extends TestCase
     public function testValidAtUpdate()
     {
       $user = User::factory()->create();
+      $category = Category::factory()->create(['user_id' => $user->id]);
       $this->actingAs($user);
 
       $itemdata = [
         'name' => 'このTodoについての名前を書きます',
       ];
-      $response = $this->put('/api/categories/1', $itemdata);
+      $response = $this->put('/api/categories/' . $category->id, $itemdata);
       $response->assertStatus(200);
     }
 

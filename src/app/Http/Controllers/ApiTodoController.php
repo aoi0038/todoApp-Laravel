@@ -8,13 +8,30 @@ use App\Http\Requests\TodoRequest;
 use App\Http\Requests\TodoStatusRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Todo\TodoRepositoryInterface as TodoRepository;
+use App\Usecases\Todo\GetAllInteractor;
+use App\Usecases\Todo\CreateInteractor;
+use App\Usecases\Todo\UpdateByIdInteractor;
+use App\Usecases\Todo\DeleteByIdInteractor;
+use App\Usecases\Todo\GetByIdInteractor;
+use App\Usecases\Todo\UpdateStatusInteractor;
 
 class ApiTodoController extends Controller
 {
+  /**
+   * @var TodoRepository
+   */
+    private $todoRepository;
+
+    public function __construct(TodoRepository $todoRepository)
+    {
+        $this->todoRepository = $todoRepository;
+    }
+
     public function getAll()
     {
-        $userId = Auth::id();
-        $todos = Todo::where('user_id', $userId)->get();
+        $getAllInteractor = new GetAllInteractor($this->todoRepository);
+        $todos = $getAllInteractor->handle();
 
         if ($todos->isEmpty()) {
           return response()->json([
@@ -25,111 +42,86 @@ class ApiTodoController extends Controller
         return response()->json([
             'todos' => $todos
         ], 200);
-
     }
 
     public function create(TodoRequest $request)
     {
-        $userId = Auth::id();
-        $todoInput = $request->all();
-        $name = $todoInput['name'];
-        $description = $todoInput['description'];
-        $category_id = $todoInput['category_id'];
-        $status = $todoInput['status_id'];
-
-        Todo::create([
-          'name' => $name,
-          'description' => $description,
-          'user_id' => $userId,
-          'category_id' => $category_id,
-          'status_id' => $status
-        ]);
-
-        return response()->json($todoInput);
-
+        $createInteractor = new CreateInteractor($this->todoRepository);
+        $todo = $createInteractor->handle($request);
+        return response()->json($todo);
     }
 
     public function updateById(TodoRequest $request, $id)
     {
-        $todo = Todo::find($id);
+        $updateByIdInteractor = new UpdateByIdInteractor($this->todoRepository);
+        $response = $updateByIdInteractor->handle($request, $id);
 
-        if (is_null($todo)) {
-          return response()->json([
+        if ($response === 404) {
+            return response()->json([
               'message' => 'todoが見つかりません'
-          ], 404);
+            ], 404);
         }
-        $authUserId = Auth::id();
-        $userId = $todo['user_id'];
-        if ($authUserId !== $userId) {
-          return response()->json([
+        if ($response === 401) {
+            return response()->json([
               'message' => '認証に失敗しました'
-          ], 401);
+            ], 401);
         }
-        $todo->update($request->all());
-        return response()->json($request->all());
-
+        return $response;
     }
 
     public function deleteById($id)
     {
-        $todo = Todo::find($id);
+        $deleteByIdInteractor = new DeleteByIdInteractor($this->todoRepository);
+        $response = $deleteByIdInteractor->handle($id);
 
-        if (is_null($todo)) {
-          return response()->json([
+        if ($response === 404) {
+            return response()->json([
               'message' => 'todoが見つかりません'
-          ], 404);
+            ], 404);
         }
-        $authUserId = Auth::id();
-        $userId = $todo['user_id'];
-        if ($authUserId !== $userId) {
-          return response()->json([
+        if ($response === 401) {
+            return response()->json([
               'message' => '認証に失敗しました'
-          ], 401);
+            ], 401);
         }
-        $todo->delete();
-        return response()->json($todo);
-
+        return $response;
     }
     
     public function getById($id)
     {
-        $todo = Todo::find($id);
-        if (!$todo) {
-          return response()->json([
+        $getByIdInteractor = new GetByIdInteractor($this->todoRepository);
+        $response = $getByIdInteractor->handle($id);
+
+        if ($response === 404) {
+            return response()->json([
               'message' => 'todoが見つかりません'
-          ], 404);
+            ], 404);
         }
-        $authUserId = Auth::id();
-        $userId = $todo['user_id'];
-        if ($authUserId !== $userId) {
-          return response()->json([
+        if ($response === 401) {
+            return response()->json([
               'message' => '認証に失敗しました'
-          ], 401);
+            ], 401);
         }
-
         return response()->json([
-            'todo' => $todo
+            'todo' => $response
         ], 200);
-
     }
 
     public function updateStatus(TodoStatusRequest $request, $id)
     {
-        $todo = Todo::find($id);
-        if (is_null($todo)) {
-          return response()->json([
-              'message' => 'todoが見つかりません'
-          ], 404);
-        }
-        $authUserId = Auth::id();
-        $userId = $todo['user_id'];
-        if ($authUserId !== $userId) {
-          return response()->json([
-              'message' => '認証に失敗しました'
-          ], 401);
-        }
-        $todo->update($request->all());
-        return response()->json($request->all());
+        $updateStatusInteractor = new UpdateStatusInteractor($this->todoRepository);
+        $response = $updateStatusInteractor->handle($request, $id);
 
+        if ($response === 404) {
+            return response()->json([
+              'message' => 'todoが見つかりません'
+            ], 404);
+        }
+        if ($response === 401) {
+            return response()->json([
+              'message' => '認証に失敗しました'
+            ], 401);
+        }
+        return response()->json($response);
     }
 }
