@@ -6,13 +6,29 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Category\CategoryRepositoryInterface as CategoryRepository;
+use App\Usecases\Category\GetAllInteractor;
+use App\Usecases\Category\CreateInteractor;
+use App\Usecases\Category\UpdateByIdInteractor;
+use App\Usecases\Category\DeleteByIdInteractor;
+use App\Usecases\Category\GetByIdInteractor;
 
 class ApiCategoryController extends Controller
 {
+  /**
+   * @var CategoryRepository
+   */
+  private $categoryRepository;
+
+  public function __construct(CategoryRepository $categoryRepository)
+  {
+      $this->categoryRepository = $categoryRepository;
+  }
+
   public function getAll()
   {
-      $userId = Auth::id();
-      $categories = Category::where('user_id', $userId)->get();
+      $getAllInteractor = new GetAllInteractor($this->categoryRepository);
+      $categories = $getAllInteractor->handle();
 
       if ($categories->isEmpty()) {
         return response()->json([
@@ -27,73 +43,69 @@ class ApiCategoryController extends Controller
 
   public function create(CategoryRequest $request)
   {
-      $categoryInput = $request->all();
-      $name = $categoryInput['name'];
-      $userId = $categoryInput['user_id'];
-
-      Category::create([
-        'name' => $name,
-        'user_id' => $userId,
-      ]);
-
-      return response()->json($categoryInput);
+      $createInteractor = new CreateInteractor($this->categoryRepository);
+      $category = $createInteractor->handle($request);
+      return response()->json($category);
   }
 
   public function updateById(CategoryRequest $request, $id)
   {
-      $category = Category::find($id);
-
-      if (is_null($category)) {
-        return response()->json([
-            'message' => 'categoryが見つかりません'
-        ], 404);
+      $updateByIdInteractor = new UpdateByIdInteractor($this->categoryRepository);
+      $response = $updateByIdInteractor->handle($request, $id);
+      if ($response === 404) {
+          return response()->json([
+            'message' => 'todoが見つかりません'
+          ], 404);
       }
-      $category->update($request->all());
-      return response()->json($request->all());
+      if ($response === 401) {
+          return response()->json([
+            'message' => '認証に失敗しました'
+          ], 401);
+      }
+      return $response;
   }
 
   public function deleteById($id)
   {
-      $category = Category::find($id);
+      $deleteByIdInteractor = new DeleteByIdInteractor($this->categoryRepository);
+      $response = $deleteByIdInteractor->handle($id);
 
-      if (is_null($category)) {
-        return response()->json([
-            'message' => 'categoryが見つかりません'
-        ], 404);
+      if ($response === 404) {
+          return response()->json([
+            'message' => 'todoが見つかりません'
+          ], 404);
       }
-
-      $authUserId = Auth::id();
-      $userId = $category['user_id'];
-      if ($authUserId !== $userId) {
-        return response()->json([
+      if ($response === 401) {
+          return response()->json([
             'message' => '認証に失敗しました'
-        ], 401);
+          ], 401);
       }
-
-      $category->delete();
-      return response()->json($category);
+      return $response;
   }
 
   public function getById($id)
   {
-      $category = Category::find($id);
+      $getByIdInteractor = new GetByIdInteractor($this->categoryRepository);
+      $response = $getByIdInteractor->handle($id);
+
+        if ($response === 404) {
+            return response()->json([
+              'message' => 'todoが見つかりません'
+            ], 404);
+        }
+        if ($response === 401) {
+            return response()->json([
+              'message' => '認証に失敗しました'
+            ], 401);
+        }
+        return response()->json([
+            'todo' => $response
+        ], 200);
       if (!$category) {
         return response()->json([
             'message' => 'categoryが見つかりません'
         ], 404);
       }
-
-      $authUserId = Auth::id();
-      $userId = $category['user_id'];
-      if ($authUserId !== $userId) {
-        return response()->json([
-            'message' => '認証に失敗しました'
-        ], 401);
-      }
-
-      return response()->json([
-          'category' => $category
-      ], 200);
   }
 
 }

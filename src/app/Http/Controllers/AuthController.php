@@ -8,19 +8,28 @@ use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\User\UserRepositoryInterface as UserRepository;
+use App\Usecases\Auth\RegisterInteractor;
+use App\Usecases\Auth\LoginInteractor;
+use App\Usecases\Auth\MeInteractor;
 
 class AuthController extends Controller
 {
+  /**
+   * @var UserRepository
+   */
+  private $userRepository;
+
+  public function __construct(UserRepository $userRepository)
+  {
+      $this->userRepository = $userRepository;
+  }
+
   public function register(RegisterRequest $request)
   {
-    $user = User::create([
-      'name' => $request->name,
-      'email' => $request->email,
-      'password' => Hash::make($request->password),
-    ]);
-    
-    $token = $user->createToken('auth_token')->plainTextToken;
-    
+    $registerInteractor = new RegisterInteractor($this->userRepository);
+    $token = $registerInteractor->handle($request);
+
     return response()->json([
       'access_token' => $token,
       'token_type' => 'Bearer',
@@ -34,11 +43,9 @@ class AuthController extends Controller
         'message' => 'Invalid login details'
       ], 401);
     }
-      
-    $user = User::where('email', $request['email'])->firstOrFail();
-      
-    $token = $user->createToken('auth_token')->plainTextToken;
-      
+    $registerInteractor = new LoginInteractor($this->userRepository);
+    $token = $registerInteractor->handle($request);
+
     return response()->json([
       'access_token' => $token,
       'token_type' => 'Bearer',
@@ -47,7 +54,9 @@ class AuthController extends Controller
 
   public function me(Request $request)
   {
-    return $request->user();
+    $meInteractor = new MeInteractor($this->userRepository);
+    $response = $meInteractor->handle($request);
+    return $response;
   }
 
 }
