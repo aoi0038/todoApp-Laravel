@@ -42,13 +42,15 @@ class TodoRepository implements TodoRepositoryInterface
         $description = $todoInput['description'];
         $category_id = $todoInput['category_id'];
         $status = $todoInput['status_id'];
-
+        $deadline = $todoInput['deadline'];
         $todo = $this->todo->create([
           'name' => $name,
           'description' => $description,
           'user_id' => $userId,
           'category_id' => $category_id,
-          'status_id' => $status
+          'status_id' => $status,
+          // 'deadline' => date("Y-m-d", strtotime($deadline)),
+          'deadline' => $deadline,
         ]);
 
         return $todo;

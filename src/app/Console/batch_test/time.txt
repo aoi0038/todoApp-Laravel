@@ -1,0 +1,287 @@
+2024-01-17 22:58:56
+2024-01-18 14:15:54
+2024-01-18 19:28:28
+2024-01-19 14:13:31
+
+   Illuminate\Contracts\Container\BindingResolutionException 
+
+  Target class [App\Console\AddTimeBot] does not exist.
+
+  at vendor/laravel/framework/src/Illuminate/Container/Container.php:914
+    910▕ 
+    911▕         try {
+    912▕             $reflector = new ReflectionClass($concrete);
+    913▕         } catch (ReflectionException $e) {
+  ➜ 914▕             throw new BindingResolutionException("Target class [$concrete] does not exist.", 0, $e);
+    915▕         }
+    916▕ 
+    917▕         // If the type is not instantiable, the developer is attempting to resolve
+    918▕         // an abstract type such as an Interface or Abstract Class and there is
+
+      [2m+10 vendor frames [22m
+
+  11  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle()
+
+
+  2024-01-19 05:41:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:41:02
+...... 225ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:42:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:42:01
+...... 238ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:43:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:43:02
+...... 203ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:44:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:44:01
+...... 226ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:45:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:45:02
+...... 221ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:46:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:46:01
+...... 229ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:47:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:47:02
+...... 236ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:48:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:48:02
+...... 232ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:49:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:49:01
+...... 238ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:50:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:50:02
+...... 207ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:51:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:51:01
+...... 301ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:52:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:52:02
+...... 250ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:53:02 Running ['artisan' batch:add-time-bot] 2024-01-19 14:53:02
+...... 341ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-19 05:54:01 Running ['artisan' batch:add-time-bot] 2024-01-19 14:54:02
+...... 236ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-23 00:58:02 Running ['artisan' batch:add-time-bot] 2024-01-23 09:58:02
+...... 242ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 00:58:02 Running ['artisan' batch:send-email-to-notify-deadline]  3,040ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 00:59:02 Running ['artisan' batch:add-time-bot] 2024-01-23 09:59:02
+...... 319ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 00:59:02 Running ['artisan' batch:send-email-to-notify-deadline]  3,152ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 01:00:02 Running ['artisan' batch:add-time-bot] 2024-01-23 10:00:02
+...... 217ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 01:00:02 Running ['artisan' batch:send-email-to-notify-deadline]  2,906ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 01:03:01 Running ['artisan' batch:add-time-bot] 2024-01-23 10:03:02
+...... 427ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 01:03:02 Running ['artisan' batch:send-email-to-notify-deadline]  3,143ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 06:50:02 Running ['artisan' batch:add-time-bot] 2024-01-23 15:50:02
+...... 194ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+In Kernel.php line 24:
+                                      
+  Class "App\Console\Todo" not found  
+                                      
+
+
+  2024-01-23 06:51:01 Running ['artisan' batch:add-time-bot] 2024-01-23 15:51:01
+...... 205ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 06:51:01 Running ['artisan' batch:send-email-to-notify-deadline]  364ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 06:52:01 Running ['artisan' batch:add-time-bot] 2024-01-23 15:52:01
+...... 261ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 06:52:01 Running ['artisan' batch:send-email-to-notify-deadline]  363ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 06:55:01 Running ['artisan' batch:add-time-bot] 2024-01-23 15:55:02
+...... 263ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 06:55:02 Running ['artisan' batch:send-email-to-notify-deadline]  315ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 06:58:01 Running ['artisan' batch:add-time-bot] 2024-01-23 15:58:02
+...... 216ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 06:58:02 Running ['artisan' batch:send-email-to-notify-deadline]  294ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:00:02 Running ['artisan' batch:add-time-bot] 2024-01-23 16:00:02
+...... 232ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:00:02 Running ['artisan' batch:send-email-to-notify-deadline]  263ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:06:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:06:01
+...... 193ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:06:01 Running ['artisan' batch:send-email-to-notify-deadline]  291ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+In SendEmailToNotifyDeadline.php line 33:
+                                      
+  syntax error, unexpected token "@"  
+                                      
+
+
+  2024-01-23 07:08:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:08:01
+...... 185ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:08:01 Running ['artisan' batch:send-email-to-notify-deadline]  267ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:09:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:09:01
+...... 225ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:09:01 Running ['artisan' batch:send-email-to-notify-deadline]  314ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:10:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:10:01
+...... 224ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:10:01 Running ['artisan' batch:send-email-to-notify-deadline]  268ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:11:02 Running ['artisan' batch:add-time-bot] 2024-01-23 16:11:02
+...... 206ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:11:02 Running ['artisan' batch:send-email-to-notify-deadline]  249ms FAIL
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:12:02 Running ['artisan' batch:add-time-bot] 2024-01-23 16:12:02
+...... 192ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:12:02 Running ['artisan' batch:send-email-to-notify-deadline]  2,920ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:14:02 Running ['artisan' batch:add-time-bot] 2024-01-23 16:14:02
+...... 204ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:15:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:15:02
+...... 234ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:16:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:16:02
+...... 295ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+object(Illuminate\Database\Eloquent\Collection)#1418 (2) {
+  ["items":protected]=>
+  array(0) {
+  }
+  ["escapeWhenCastingToString":protected]=>
+  bool(false)
+}
+string(24) "デバッグをします"
+
+
+  2024-01-23 07:18:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:18:01
+...... 227ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+object(Illuminate\Database\Eloquent\Collection)#1418 (2) {
+  ["items":protected]=>
+  array(0) {
+  }
+  ["escapeWhenCastingToString":protected]=>
+  bool(false)
+}
+string(24) "デバッグをします"
+
+
+  2024-01-23 07:53:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:53:01
+...... 204ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:53:01 Running ['artisan' batch:send-email-to-notify-deadline]  2,954ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:54:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:54:02
+...... 201ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:54:02 Running ['artisan' batch:send-email-to-notify-deadline]  3,015ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:55:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:55:01
+...... 201ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:55:01 Running ['artisan' batch:send-email-to-notify-deadline]  2,910ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:56:02 Running ['artisan' batch:add-time-bot] 2024-01-23 16:56:02
+...... 192ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:56:02 Running ['artisan' batch:send-email-to-notify-deadline]  2,922ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
+
+  2024-01-23 07:57:01 Running ['artisan' batch:add-time-bot] 2024-01-23 16:57:01
+...... 196ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:add-time-bot > '/dev/null' 2>&1  
+  2024-01-23 07:57:01 Running ['artisan' batch:send-email-to-notify-deadline]  3,202ms DONE
+  ⇂ '/opt/bitnami/php/bin/php' 'artisan' batch:send-email-to-notify-deadline > '/dev/null' 2>&1  
+
